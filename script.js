@@ -1,15 +1,13 @@
 const container = document.getElementById('container');
-const grids = document.querySelectorAll('#grids');
 const small = document.querySelector('#small');
 const med = document.querySelector('#med');
 const big = document.querySelector('#big');
-
-function multiply(num) {
-    return num * num;
-}
+const black = document.getElementById('black');
+const random = document.getElementById('random');
+const clearColor = document.getElementById('clear');
 
 function makeDivs(numDivs) {
-    let gridSize = multiply(numDivs);
+    let gridSize = numDivs * numDivs;
 
     for(let i = 0; i < gridSize; i++) {
         let cells = document.createElement('div');
@@ -18,7 +16,7 @@ function makeDivs(numDivs) {
     }
 }
 
-function defaultGrid() {
+function smallGrid() {
     makeDivs(16);
     let grids = document.querySelectorAll('#grids').forEach(elem => {
         elem.style.width = '32px'
@@ -42,14 +40,21 @@ function bigGrid() {
     })
 }
 
-function clear() {
-    while (grids.firstChild) {
-        grids.removeChild(grids.lastChild)
+function colorBlack(elem) {
+    elem.currentTarget.style.backgroundColor = '#000000'
+}
+
+function randomColor(elem) {
+    let letters = '0123456789ABCDEF';
+    let color = '#'
+    for(let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
     }
+    elem.currentTarget.style.backgroundColor = color;
 }
 
 small.addEventListener('click', () => {
-    defaultGrid();
+    smallGrid();
     small.disabled = true;
     med.disabled = false;
     big.disabled = false;
@@ -69,3 +74,35 @@ big.addEventListener('click', () => {
     med.disabled = false;
 })
 
+black.addEventListener('click', () => {
+    black.disabled = true;
+    random.disabled = false;
+    clearColor.disabled = false;
+    let grids = document.querySelectorAll('#grids')
+    grids.forEach((grid) => {
+        grid.addEventListener('mouseover', colorBlack)
+    })
+})
+
+random.addEventListener('click', ()=> {
+    random.disabled = true;
+    black.disabled = false;
+    clearColor.disabled = false
+    let grids = document.querySelectorAll('#grids')
+    grids.forEach((grid) => {
+        grid.addEventListener('mouseover', randomColor)
+    })
+})
+
+clearColor.addEventListener('click', () => {
+    let grids = document.querySelectorAll('#grids');
+    grids.forEach((grid) => {
+        grid.setAttribute('style', 'background-color: white')
+    })
+    clearColor.disabled = true;
+    random.disabled = false;
+    black.disabled = false;
+    small.disabled = false;
+    med.disabled = false;
+    big.disabled = false;
+})
