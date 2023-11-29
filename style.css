@@ -3,3 +3,19 @@
     padding: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 512px;
+    height: 512px;
+    border: 3px solid black;
+    overflow: auto;
+}
+
+#container > div {
+    width: 30px;
+    height: 30px;
+    border: 1px solid gray;
+}
