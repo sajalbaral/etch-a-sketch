@@ -11,13 +11,19 @@ body {
 h1 {
     text-align: center;
     font-size: 56px;
-    padding: 2rem;
+    padding: 1rem;
     color: #a9a9a9;
 }
 
 button {
     width: 6rem;
-    height: 3rem;;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: 10px 5px 5px rgb(122, 120, 120);
+}
+
+button:hover {
+    background-color: #a9a9a9;
 }
 
 .btn {
