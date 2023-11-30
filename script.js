@@ -101,7 +101,6 @@ clearColor.addEventListener('click', () => {
     })
     clearColor.disabled = true;
     random.disabled = false;
-    black.disabled = false;
     small.disabled = false;
     med.disabled = false;
     big.disabled = false;
